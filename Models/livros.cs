@@ -1,15 +1,14 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace BibliontecaApi.Models;
+namespace BibliotecaApi.Models;
 
-public class Livros
+public class Livro
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     
-    public String Id {get; set;}
-
+    public String? Id {get; set;}
     public String Titulo {get; set;} = string.Empty;
     public String Autor {get; set;} = string.Empty;
     public String Editora {get; set;} = string.Empty;
