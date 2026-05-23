@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0dLlpwqecgA=",
+  "dgSpecHash": "pV+0b+bBZUk=",
   "success": true,
   "projectFilePath": "A:\\Git02\\bibliotecaApi\\BibliotecaApi\\BibliotecaApi.csproj",
   "expectedPackageFiles": [
@@ -23,7 +23,11 @@
     "C:\\Users\\AdailC\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\10.1.7\\swashbuckle.aspnetcore.swaggergen.10.1.7.nupkg.sha512",
     "C:\\Users\\AdailC\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\10.1.7\\swashbuckle.aspnetcore.swaggerui.10.1.7.nupkg.sha512",
     "C:\\Users\\AdailC\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.0.1\\system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512",
-    "C:\\Users\\AdailC\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512"
+    "C:\\Users\\AdailC\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512",
+    "C:\\Users\\AdailC\\.nuget\\packages\\microsoft.netcore.app.ref\\10.0.3\\microsoft.netcore.app.ref.10.0.3.nupkg.sha512",
+    "C:\\Users\\AdailC\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\10.0.3\\microsoft.windowsdesktop.app.ref.10.0.3.nupkg.sha512",
+    "C:\\Users\\AdailC\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\10.0.3\\microsoft.aspnetcore.app.ref.10.0.3.nupkg.sha512",
+    "C:\\Users\\AdailC\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\10.0.3\\microsoft.netcore.app.host.win-x64.10.0.3.nupkg.sha512"
   ],
   "logs": [
     {
@@ -35,7 +39,7 @@
       "filePath": "A:\\Git02\\bibliotecaApi\\BibliotecaApi\\BibliotecaApi.csproj",
       "libraryId": "SharpCompress",
       "targetGraphs": [
-        "net11.0"
+        "net10.0"
       ]
     }
   ]
