@@ -1,7 +1,7 @@
 using BibliotecaApi.Models;
 using BibliotecaApi.Services;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 
 namespace BibliotecaApi.Controllers;
