@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Biblioteca</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; color: #333; }
+        header { background: #2c3e50; color: white; padding: 16px 32px; }
+        header h1 { font-size: 24px; }
+        nav { background: #34495e; padding: 8px 32px; display: flex; gap: 16px; }
+        nav button { background: none; border: none; color: white; cursor: pointer; padding: 8px 16px; border-radius: 4px; font-size: 14px; }
+        nav button:hover { background: #2c3e50; }
+        #conteudo { max-width: 900px; margin: 32px auto; padding: 0 16px; }
+        .card { background: white; border-radius: 8px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .card h3 { margin-bottom: 8px; color: #2c3e50; }
+        .card p { color: #666; font-size: 14px; margin-bottom: 4px; }
+        .btn { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; margin-right: 8px; }
+        .btn-primary { background: #2c3e50; color: white; }
+        .btn-danger { background: #e74c3c; color: white; }
+        .btn-success { background: #27ae60; color: white; }
+        .btn:hover { opacity: 0.85; }
+        form { background: white; border-radius: 8px; padding: 24px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        form h2 { margin-bottom: 20px; color: #2c3e50; }
+        .form-group { margin-bottom: 16px; }
+        label { display: block; margin-bottom: 4px; font-size: 14px; font-weight: bold; }
+        input { width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        .mensagem { padding: 12px; border-radius: 4px; margin-bottom: 16px; }
+        .sucesso { background: #d4edda; color: #155724; }
+        .erro { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📚 Biblioteca Online</h1>
+    </header>
+    <nav>
+        <button onclick="mostrarLista()">📋 Lista de Livros</button>
+        <button onclick="mostrarFormulario()">➕ Cadastrar Livro</button>
+    </nav>
+    <div id="conteudo"></div>
+
+    <script>
+        const API = 'http://localhost:5078/api';
+
+        // ==================== VISÕES ====================
+
+        function mostrarLista() {
+            document.getElementById('conteudo').innerHTML = '<p>Carregando...</p>';
+            fetch(`${API}/livros`)
+                .then(res => res.json())
+                .then(livros => {
+                    if (livros.length === 0) {
+                        document.getElementById('conteudo').innerHTML = '<p>Nenhum livro cadastrado.</p>';
+                        return;
+                    }
+                    const html = livros.map(l => `
+                        <div class="card">
+                            <h3>${l.titulo}</h3>
+                            <p><strong>Autor:</strong> ${l.autor}</p>
+                            <p><strong>Editora:</strong> ${l.editora}</p>
+                            <p><strong>Ano:</strong> ${l.anoPublicacao}</p>
+                            <p><strong>Quantidade:</strong> ${l.quantidade}</p>
+                            <br>
+                            <button class="btn btn-primary" onclick="mostrarDetalhe('${l.id}')">Ver Detalhes</button>
+                            <button class="btn btn-danger" onclick="deletarLivro('${l.id}')">Deletar</button>
+                        </div>
+                    `).join('');
+                    document.getElementById('conteudo').innerHTML = html;
+                })
+                .catch(() => {
+                    document.getElementById('conteudo').innerHTML = '<p class="mensagem erro">Erro ao conectar com a API.</p>';
+                });
+        }
+
+        function mostrarDetalhe(id) {
+            document.getElementById('conteudo').innerHTML = '<p>Carregando...</p>';
+            fetch(`${API}/livros/${id}`)
+                .then(res => res.json())
+                .then(l => {
+                    document.getElementById('conteudo').innerHTML = `
+                        <div class="card">
+                            <h3>${l.titulo}</h3>
+                            <p><strong>Autor:</strong> ${l.autor}</p>
+                            <p><strong>Editora:</strong> ${l.editora}</p>
+                            <p><strong>Ano de Publicação:</strong> ${l.anoPublicacao}</p>
+                            <p><strong>Quantidade em Estoque:</strong> ${l.quantidade}</p>
+                            <p><strong>ID:</strong> ${l.id}</p>
+                            <br>
+                            <button class="btn btn-primary" onclick="mostrarLista()">← Voltar</button>
+                        </div>
+                    `;
+                });
+        }
+
+        function mostrarFormulario() {
+            document.getElementById('conteudo').innerHTML = `
+                <form>
+                    <h2>Cadastrar Novo Livro</h2>
+                    <div id="mensagem"></div>
+                    <div class="form-group">
+                        <label>Título</label>
+                        <input type="text" id="titulo" placeholder="Ex: Clean Code">
+                    </div>
+                    <div class="form-group">
+                        <label>Autor</label>
+                        <input type="text" id="autor" placeholder="Ex: Robert C. Martin">
+                    </div>
+                    <div class="form-group">
+                        <label>Editora</label>
+                        <input type="text" id="editora" placeholder="Ex: Prentice Hall">
+                    </div>
+                    <div class="form-group">
+                        <label>Ano de Publicação</label>
+                        <input type="number" id="anoPublicacao" placeholder="Ex: 2008">
+                    </div>
+                    <div class="form-group">
+                        <label>Quantidade em Estoque</label>
+                        <input type="number" id="quantidade" placeholder="Ex: 5">
+                    </div>
+                    <button type="button" class="btn btn-success" onclick="cadastrarLivro()">Salvar</button>
+                    <button type="button" class="btn btn-primary" onclick="mostrarLista()">Cancelar</button>
+                </form>
+            `;
+        }
+
+        // ==================== AÇÕES ====================
+
+        function cadastrarLivro() {
+            const livro = {
+                titulo: document.getElementById('titulo').value,
+                autor: document.getElementById('autor').value,
+                editora: document.getElementById('editora').value,
+                anoPublicacao: parseInt(document.getElementById('anoPublicacao').value),
+                quantidade: parseInt(document.getElementById('quantidade').value)
+            };
+
+            fetch(`${API}/livros`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(livro)
+            })
+            .then(res => {
+                if (res.status === 201) {
+                    document.getElementById('mensagem').innerHTML = '<div class="mensagem sucesso">Livro cadastrado com sucesso!</div>';
+                    setTimeout(() => mostrarLista(), 1500);
+                } else {
+                    document.getElementById('mensagem').innerHTML = '<div class="mensagem erro">Erro ao cadastrar livro.</div>';
+                }
+            })
+            .catch(() => {
+                document.getElementById('mensagem').innerHTML = '<div class="mensagem erro">Erro ao conectar com a API.</div>';
+            });
+        }
+
+        function deletarLivro(id) {
+            if (!confirm('Tem certeza que deseja deletar este livro?')) return;
+            fetch(`${API}/livros/${id}`, { method: 'DELETE' })
+                .then(res => {
+                    if (res.status === 204) mostrarLista();
+                });
+        }
+
+        // Inicia mostrando a lista
+        mostrarLista();
+    </script>
+</body>
+</html>
