@@ -80,6 +80,38 @@ Controllers → Services → Repositories → MongoDB
 - **DTOs** — objetos de entrada e saída da API
 
 ---
+BibliotecaApi/
+├── Controllers/              # Camada de apresentação (API)
+│   ├── LivrosController.cs
+│   └── EmprestimoController.cs
+│
+├── Services/                 # Regras de negócio
+│   ├── LivroService.cs
+│   ├── EmprestimoSevice.cs
+│   ├── ILivrosService.cs
+│   └── IEmprestimoService.cs
+│
+├── Repositories/             # Acesso a dados (MongoDB)
+│   ├── LivrosRepositorios.cs
+│   ├── EmprestimoRepositorios.cs
+│   ├── IlivrosRepositorios.cs
+│   └── IEmprestimoRepositorios.cs
+│
+├── Models/                   # Entidades do domínio
+│   ├── livros.cs
+│   └── emprestimos.cs
+│
+├── wwwroot/                  # Arquivos estáticos (Frontend)
+│   └── index.html
+│
+├── Properties/
+├── bin/ e obj/               # Pastas geradas
+├── appsettings.json
+├── appsettings.Development.json
+├── BibliotecaApi.csproj
+├── Program.cs
+├── docker-compose.yml
+└── README.md
 
 ## 🧪 Testando a API
 
