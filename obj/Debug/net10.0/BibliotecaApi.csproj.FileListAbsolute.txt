@@ -50,4 +50,4 @@ A:\Git02\bibliotecaApi\bibliotecaApi\obj\Debug\net10.0\refint\BibliotecaApi.dll
 A:\Git02\bibliotecaApi\bibliotecaApi\obj\Debug\net10.0\BibliotecaApi.pdb
 A:\Git02\bibliotecaApi\bibliotecaApi\obj\Debug\net10.0\BibliotecaApi.genruntimeconfig.cache
 A:\Git02\bibliotecaApi\bibliotecaApi\obj\Debug\net10.0\ref\BibliotecaApi.dll
-A:\Git02\bibliotecaApi\bibliotecaApi\obj\Debug\net10.0\compressed\5k21zsdxky-{0}-d2viwbwct2-d2viwbwct2.gz
+A:\Git02\bibliotecaApi\bibliotecaApi\obj\Debug\net10.0\compressed\5k21zsdxky-{0}-02jcjd4dtg-02jcjd4dtg.gz
