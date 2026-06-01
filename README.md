@@ -81,31 +81,31 @@ Controllers → Services → Repositories → MongoDB
 
 ---
 BibliotecaApi/
-├── Controllers/              # Camada de apresentação (API)
+├── Controllers/              
 │   ├── LivrosController.cs
 │   └── EmprestimoController.cs
 │
-├── Services/                 # Regras de negócio
+├── Services/                 
 │   ├── LivroService.cs
 │   ├── EmprestimoSevice.cs
 │   ├── ILivrosService.cs
 │   └── IEmprestimoService.cs
 │
-├── Repositories/             # Acesso a dados (MongoDB)
+├── Repositories/            
 │   ├── LivrosRepositorios.cs
 │   ├── EmprestimoRepositorios.cs
 │   ├── IlivrosRepositorios.cs
 │   └── IEmprestimoRepositorios.cs
 │
-├── Models/                   # Entidades do domínio
+├── Models/                   
 │   ├── livros.cs
 │   └── emprestimos.cs
 │
-├── wwwroot/                  # Arquivos estáticos (Frontend)
+├── wwwroot/                 
 │   └── index.html
 │
 ├── Properties/
-├── bin/ e obj/               # Pastas geradas
+├── bin/ e obj/               
 ├── appsettings.json
 ├── appsettings.Development.json
 ├── BibliotecaApi.csproj
